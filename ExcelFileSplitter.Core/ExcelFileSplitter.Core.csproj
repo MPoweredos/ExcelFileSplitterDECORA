@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ExcelFileSplitter</RootNamespace>
+    <AssemblyName>ExcelFileSplitter.Core</AssemblyName>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="16.0.18925.20022"
+                      GeneratePathProperty="true" ExcludeAssets="all" />
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>$(PkgMicrosoft_Office_Interop_Excel)\lib\netstandard2.0\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ExcelFileSplitter.Tests" />
+  </ItemGroup>
+
+  <Target Name="SprawdzWklejanieInteropu" AfterTargets="ResolveAssemblyReferences">
+    <PropertyGroup>
+      <_WklejanieInteropu>@(ReferencePath->WithMetadataValue('FileName', 'Microsoft.Office.Interop.Excel')->Metadata('EmbedInteropTypes'))</_WklejanieInteropu>
+    </PropertyGroup>
+    <Message Importance="high" Text="Interop Excela: EmbedInteropTypes='$(_WklejanieInteropu)'" />
+    <Error Condition="'$(_WklejanieInteropu)' != 'true'"
+           Text="Interop Excela NIE jest wklejany (EmbedInteropTypes='$(_WklejanieInteropu)') - przy Private=false plik interopu nie trafi do wyniku, a aplikacja wywali sie w runtime na brakujacym assembly." />
+  </Target>
+
+  <Target Name="SprawdzInterop" BeforeTargets="ResolveAssemblyReferences"
+          Condition="'$(PkgMicrosoft_Office_Interop_Excel)' == ''">
+    <Error Text="Nie ustawila sie wlasciwosc PkgMicrosoft_Office_Interop_Excel - uruchom `dotnet restore`." />
+  </Target>
+
+</Project>

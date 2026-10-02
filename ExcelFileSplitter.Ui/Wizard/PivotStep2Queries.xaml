@@ -1,0 +1,69 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.PivotStep2Queries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource NaglowekKroku}" Text="Zapytania i parametry" />
+            <TextBlock Style="{StaticResource OpisKroku}"
+                       Text="Sekcja Queries mówi, które zapytanie Power Query filtrować i po czym. To jedyna część konfiguracji, której okno nie składa za Ciebie - opisuje relacje między tabelami modelu, a te zna tylko autor raportu. Wypełnia się ją w pliku ustawień." />
+        </StackPanel>
+
+        <Border Grid.Row="1" x:Name="RamkaBraku" Background="#FFF7E6" BorderBrush="#E0A800" BorderThickness="1"
+                Padding="14" Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="Nie masz jeszcze pliku ustawień. Zrób tak:" FontWeight="SemiBold" Margin="0,0,0,6" />
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,3"
+                           Text="1. Kliknij &quot;Zapisz szablon ustawień...&quot; i zapisz plik obok raportu." />
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,3"
+                           Text="2. Otwórz go w Notatniku i wypełnij sekcję Queries według opisu poniżej." />
+                <TextBlock TextWrapping="Wrap"
+                           Text="3. Wróć tutaj i wczytaj go przyciskiem &quot;Wczytaj ustawienia&quot; na dole okna." />
+            </StackPanel>
+        </Border>
+
+        <DockPanel Grid.Row="2">
+            <TextBlock DockPanel.Dock="Top" x:Name="NaglowekListy" FontWeight="SemiBold" Margin="0,0,0,4"
+                       Text="Zapytania z wczytanych ustawień:" />
+
+            <ScrollViewer DockPanel.Dock="Bottom" MaxHeight="210" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+                <StackPanel>
+                    <TextBlock Text="Jak wypełnić sekcję Queries" FontWeight="SemiBold" Margin="0,0,0,6" />
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,6"
+                               Text="Każdy wpis opisuje jedno zapytanie ze skoroszytu. Nazwa (Name) musi być dokładnie taka, jak w edytorze Power Query." />
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,6"
+                               Text="FilterColumn - kolumna, po której zapytanie ma być zawężone. Tabela z kolumną podziału (np. wymiar klientów) filtruje się wprost po niej. Puste = zapytanie nie jest filtrowane; tak zostawia się słowniki bez danych wrażliwych." />
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,6"
+                               Text="KeyFrom - dla tabel, które nie mają kolumny podziału (np. faktury). Zamiast porównywać wartość, zostawiamy wiersze, których FilterColumn występuje w kolumnie Column już przefiltrowanego zapytania Query. Tak filtr propaguje się z wymiaru na fakty." />
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,6"
+                               Text="Cache - czy podpiąć przełącznik czytania z cache. Zostaw true dla zapytań sięgających do plików źródłowych; dzięki temu etap 2 nie musi ich już otwierać." />
+                    <TextBlock TextWrapping="Wrap" Foreground="#555555"
+                               Text="Pełny opis z przykładem: docs/jak-dziala.md w repozytorium. Szablon zapisany poniżej ma już wypełniony przykład wymiaru i tabeli faktów - najprościej podmienić w nim nazwy na swoje." />
+                </StackPanel>
+            </ScrollViewer>
+
+            <ListView x:Name="ListaZapytan">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Zapytanie" Width="200" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Filtr po kolumnie" Width="190" DisplayMemberBinding="{Binding Filter}" />
+                        <GridViewColumn Header="Klucz z" Width="220" DisplayMemberBinding="{Binding Key}" />
+                        <GridViewColumn Header="Cache" Width="70" DisplayMemberBinding="{Binding Cache}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <Grid Grid.Row="3" Margin="0,12,0,0">
+            <TextBlock x:Name="OpisParametrow" VerticalAlignment="Center" Foreground="#555555" TextWrapping="Wrap" />
+            <Button Content="Zapisz szablon ustawień..." Click="Szablon_Click" HorizontalAlignment="Right" MinWidth="190" />
+        </Grid>
+    </Grid>
+</UserControl>

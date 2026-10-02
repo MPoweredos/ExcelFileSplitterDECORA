@@ -1,0 +1,53 @@
+{
+  "Mode": "Worksheet",
+  "SourceWorkbook": "C:\\Users\\praczykm\\Desktop\\PODZIAL_TESTY_ZWYKLY\\Sprzedaz.xlsx",
+  "OutputFolder": "C:\\Users\\praczykm\\Desktop\\PODZIAL_TESTY_ZWYKLY\\out",
+  "FileNameTemplate": "Sprzedaz_{name}.xlsx",
+  "SplitColumn": "Nazwa Opiekuna Klienta",
+  "Values": [],
+  "Groups": [
+    {
+      "Name": "Polnoc",
+      "Values": [
+        "Region A",
+        "Region B",
+        "Region C"
+      ],
+      "SheetsToKeep": [
+        "Raport 1",
+        "Raport 2",
+        "Raport 3",
+        "Raport 4"
+      ]
+    },
+    {
+      "Name": "Poludnie",
+      "Values": [
+        "Region D"
+      ],
+      "SheetsToKeep": [
+        "Raport 2",
+        "Raport 3"
+      ]
+    }
+  ],
+  "SheetsToKeep": [
+    "Dane",
+    "Dashboard"
+  ],
+  "Worksheet": {
+    "Table": "tblSprzedaz",
+    "Sheet": "",
+    "HeaderRow": 1,
+    "DeleteEntireRow": true,
+    "FormulasToValues": true
+  },
+  "Hardening": {
+    "StubQueries": false,
+    "DeleteQueries": false,
+    "ProtectStructure": false,
+    "DisableRefreshOnOpen": true,
+    "RemoveSplitColumnSlicers": false
+  },
+  "Verify": true
+}

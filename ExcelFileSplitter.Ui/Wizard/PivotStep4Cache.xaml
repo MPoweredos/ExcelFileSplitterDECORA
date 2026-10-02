@@ -1,0 +1,28 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.PivotStep4Cache"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:kreator="clr-namespace:ExcelFileSplitter.Ui.Wizard">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource NaglowekKroku}" Text="Cache (etap 1)" />
+            <TextBlock Style="{StaticResource OpisKroku}"
+                       Text="Jedno pełne odświeżenie z plików źródłowych, a potem zrzut tabel modelu do plików CSV. Dzięki temu podział nie musi sięgać do źródeł przy każdym odbiorcy - a przy kilkudziesięciu plikach to różnica godzin. Na koniec samokontrola: model zbudowany z cache musi mieć tę samą strukturę i liczbę wierszy co oryginał." />
+
+            <CheckBox x:Name="PoleUzyjCache" Margin="0,0,0,6" Click="UzyjCache_Click"
+                      Content="Podział ma czytać dane z cache (zalecane przy większej liczbie plików)" />
+            <TextBlock x:Name="OpisWyboru" Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,6" />
+            <TextBlock x:Name="OpisFolderu" Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,6" />
+            <TextBlock x:Name="OpisPozostalych" Foreground="#777777" TextWrapping="Wrap" Margin="0,0,0,12" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                <Button x:Name="PrzyciskBuduj" Content="Zbuduj cache" Click="Buduj_Click" MinWidth="180" Margin="0,0,12,0" />
+                <TextBlock x:Name="Wynik" VerticalAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold" />
+            </StackPanel>
+
+            <TextBlock Text="Przebieg:" FontWeight="SemiBold" Margin="0,0,0,4" />
+        </StackPanel>
+
+        <kreator:LogView x:Name="ListaLogu" />
+    </DockPanel>
+</UserControl>

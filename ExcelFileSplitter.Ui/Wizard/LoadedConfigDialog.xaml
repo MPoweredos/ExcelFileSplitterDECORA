@@ -1,0 +1,33 @@
+<Window x:Class="ExcelFileSplitter.Ui.Wizard.LoadedConfigDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wczytano ustawienia" Width="620" SizeToContent="Height"
+        ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+
+    <StackPanel Margin="24">
+        <TextBlock Text="Wczytano ustawienia" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4" />
+        <TextBlock x:Name="OpisPliku" Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,18" />
+
+        <TextBlock Text="Co pominąć?" FontWeight="SemiBold" Margin="0,0,0,10" />
+
+        <CheckBox x:Name="PomijajPrzegladPliku" Margin="0,0,0,4"
+                  Content="Nie pytaj mnie o układ pliku - przyjmij to, co jest w ustawieniach" />
+        <TextBlock Foreground="#666666" TextWrapping="Wrap" Margin="24,0,0,16"
+                   Text="Kreator pominie ekrany: gdzie są dane, kolumna podziału oraz grupy i arkusze. Plik zostanie odczytany tak czy inaczej - pominięte są tylko pytania." />
+
+        <CheckBox x:Name="PomijajKontrole" Margin="0,0,0,4"
+                  Content="Nie zatrzymuj mnie na kontroli gotowości" />
+        <TextBlock Foreground="#666666" TextWrapping="Wrap" Margin="24,0,0,4"
+                   Text="Kontrola i tak się wykona - opiera się na tym samym odczycie skoroszytu, którego wymaga plan plików - ale jej zastrzeżenia nie zablokują startu. Zobaczysz je jako uwagi." />
+        <TextBlock x:Name="OstrzezenieKontroli" Foreground="#B00020" TextWrapping="Wrap" Margin="24,0,0,18"
+                   Text="To ta kontrola, która wyłapuje np. treść stojącą obok danych - przy kasowaniu całych wierszy znika ona razem z nimi." />
+
+        <TextBlock Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,18"
+                   Text="Niezależnie od wyboru każdy gotowy plik jest sprawdzany po zapisaniu, a ten, który kontroli nie przejdzie, dostaje w nazwie _NIE_WYSYŁAĆ." />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Anuluj" Click="Anuluj_Click" IsCancel="True" />
+            <Button Content="Dalej" Click="Dalej_Click" IsDefault="True" MinWidth="110" />
+        </StackPanel>
+    </StackPanel>
+</Window>

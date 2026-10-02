@@ -1,0 +1,115 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.Step4Groups"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:kreator="clr-namespace:ExcelFileSplitter.Ui.Wizard">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="Ptaszek">
+            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="0,1" Click="Ptaszek_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Text}" />
+                    <TextBlock Text="{Binding Note}" Foreground="#888888" Margin="8,0,0,0" />
+                </StackPanel>
+            </CheckBox>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource NaglowekKroku}" Text="Grupy i arkusze" />
+            <TextBlock Style="{StaticResource OpisKroku}"
+                       Text="Ustal, ile ma powstać plików i co ma być w każdym z nich." />
+
+            <kreator:PassBar x:Name="PasekPodzialow" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,12">
+            <RadioButton x:Name="TrybNaWartosc" GroupName="Tryb" Checked="Tryb_Changed" Margin="0,0,0,4"
+                         Content="Jeden plik na każdą wartość kolumny podziału" />
+            <RadioButton x:Name="TrybGrup" GroupName="Tryb" Checked="Tryb_Changed"
+                         Content="Pliki zbiorcze - sam ustalam, które wartości trafiają do którego pliku" />
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" x:Name="PanelWartosci">
+            <TextBlock DockPanel.Dock="Top" x:Name="NaglowekWartosci" FontWeight="SemiBold" Margin="0,0,0,4"
+                       Text="Dla których wartości utworzyć pliki (nic nie zaznaczone = dla wszystkich):" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" BorderBrush="#DDDDDD" BorderThickness="1" Padding="8">
+                <ItemsControl x:Name="ListaWartosci" ItemTemplate="{StaticResource Ptaszek}" />
+            </ScrollViewer>
+        </DockPanel>
+
+        <Grid Grid.Row="2" x:Name="PanelGrup" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0" Margin="0,0,16,0">
+                <TextBlock DockPanel.Dock="Top" Text="Pliki zbiorcze" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Margin="0,8,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Dodaj" Click="Dodaj_Click" Margin="0,0,8,0" MinWidth="72" />
+                        <Button Content="Usuń" Click="Usun_Click" x:Name="PrzyciskUsun" Margin="0" MinWidth="72" />
+                    </StackPanel>
+                </StackPanel>
+                <ListBox x:Name="ListaGrup" DisplayMemberPath="Name" SelectionChanged="Grupa_Changed" />
+            </DockPanel>
+
+            <Grid Grid.Column="1" x:Name="EdytorGrupy">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Nazwa pliku" VerticalAlignment="Center" Margin="0,0,8,0" />
+                        <TextBox x:Name="PoleNazwaGrupy" Width="260" Padding="4,3" TextChanged="NazwaGrupy_Changed" />
+                        <Button x:Name="PrzyciskNazwaZWartosci" Content="Nazwij od wartości" Click="NazwaZWartosci_Click"
+                                Margin="8,0,0,0" MinWidth="140"
+                                ToolTip="Wpisuje w nazwę wartości zaznaczone po lewej - tak samo, jak nazywają się pliki przy podziale na każdą wartość osobno." />
+                    </StackPanel>
+                    <TextBlock x:Name="PodgladNazwyPliku" Foreground="#555555" TextWrapping="Wrap" Margin="0,5,0,0" />
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Grid.Column="0" Margin="0,0,12,0">
+                        <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" Margin="0,0,0,4"
+                                   Text="Czyje dane trafią do tego pliku:" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" BorderBrush="#DDDDDD" BorderThickness="1" Padding="8">
+                            <ItemsControl x:Name="ListaWartosciGrupy" ItemTemplate="{StaticResource Ptaszek}" />
+                        </ScrollViewer>
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="1">
+                        <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" Margin="0,0,0,4"
+                                   Text="Arkusze tylko dla tego pliku (ponad wspólne):" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" BorderBrush="#DDDDDD" BorderThickness="1" Padding="8">
+                            <ItemsControl x:Name="ListaArkuszyGrupy" ItemTemplate="{StaticResource Ptaszek}" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <DockPanel Grid.Row="3" Height="150" Margin="0,14,0,0">
+            <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" Margin="0,0,0,4"
+                       Text="Arkusze wspólne - trafiają do KAŻDEGO pliku. Reszta zostanie z plików usunięta." />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" BorderBrush="#DDDDDD" BorderThickness="1" Padding="8">
+                <ItemsControl x:Name="ListaArkuszyWspolnych" ItemTemplate="{StaticResource Ptaszek}" />
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>

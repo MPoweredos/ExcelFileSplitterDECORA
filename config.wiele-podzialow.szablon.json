@@ -1,0 +1,55 @@
+{
+  "Mode": "Worksheet",
+  "SourceWorkbook": "C:\\Raporty\\Sprzedaz.xlsb",
+  "OutputFolder": "C:\\Raporty\\out",
+  "FileNameTemplate": "Raport_{podzial}_{value}.xlsx",
+  "Passes": [
+    {
+      "Name": "Menadzer",
+      "SplitColumn": "Menadzer",
+      "Values": [],
+      "Groups": [],
+      "SheetsToKeep": [
+        "Raport menadzera"
+      ]
+    },
+    {
+      "Name": "Obsluga",
+      "SplitColumn": "Obsluga klienta",
+      "Values": [],
+      "Groups": [
+        {
+          "Name": "Zespol A",
+          "Values": [
+            "ANNA NOWAK",
+            "PIOTR LIS"
+          ],
+          "SheetsToKeep": [
+            "Raport zespolu"
+          ]
+        }
+      ],
+      "SheetsToKeep": [
+        "Raport obslugi"
+      ]
+    }
+  ],
+  "SheetsToKeep": [
+    "Dashboard"
+  ],
+  "Worksheet": {
+    "Table": "",
+    "Sheet": "Baza",
+    "HeaderRow": 1,
+    "DeleteEntireRow": true,
+    "FormulasToValues": true
+  },
+  "Hardening": {
+    "StubQueries": false,
+    "DeleteQueries": false,
+    "ProtectStructure": false,
+    "DisableRefreshOnOpen": true,
+    "RemoveSplitColumnSlicers": false
+  },
+  "Verify": true
+}

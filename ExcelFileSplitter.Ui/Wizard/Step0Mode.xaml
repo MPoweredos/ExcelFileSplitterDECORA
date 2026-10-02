@@ -1,0 +1,28 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.Step0Mode"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel>
+        <TextBlock Style="{StaticResource NaglowekKroku}" Text="Jaki plik dzielisz?" />
+        <TextBlock Style="{StaticResource OpisKroku}"
+                   Text="Od tego zależy, jak plik da się zawęzić - a więc i przez co kreator Cię przeprowadzi. Jeśli nie wiesz: otwórz plik w Excelu i sprawdź, czy na wstążce Dane jest przycisk Zarządzaj modelem danych z wpisanymi tabelami." />
+
+        <Border BorderBrush="#DDDDDD" BorderThickness="1" Padding="16" Margin="0,0,0,12">
+            <StackPanel>
+                <RadioButton x:Name="TrybZwykly" GroupName="Tryb" IsChecked="True"
+                             Content="Zwykły plik Excela" FontWeight="SemiBold" />
+                <TextBlock Foreground="#555555" TextWrapping="Wrap" Margin="24,4,0,0"
+                           Text="Dane siedzą w komórkach arkusza albo w tabeli Excela. Podział kasuje wiersze pozostałych odbiorców i od razu zapisuje pliki - bez etapów pośrednich. Kreator ma pięć kroków." />
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="#DDDDDD" BorderThickness="1" Padding="16">
+            <StackPanel>
+                <RadioButton x:Name="TrybModelu" GroupName="Tryb"
+                             Content="Plik z Modelem danych (Power Pivot)" FontWeight="SemiBold" />
+                <TextBlock Foreground="#555555" TextWrapping="Wrap" Margin="24,4,0,0"
+                           Text="Dane siedzą w modelu, a do pliku trafiają przez zapytania Power Query. Zawężenie idzie przez filtr wstrzyknięty w kod M i pełne odświeżenie, więc przed podziałem są dwa etapy: przygotowanie skoroszytu i zbudowanie cache. Kreator ma siedem kroków i wymaga pliku ustawień z sekcją Queries - szablon dostaniesz po drodze." />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

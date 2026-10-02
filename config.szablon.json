@@ -1,0 +1,63 @@
+{
+  "Mode": "PowerPivot",
+  "SourceWorkbook": "C:\\Users\\praczykm\\Desktop\\PODZIAŁ_TESTY_V2\\szablon\\Raport_Szablon.xlsm",
+  "OutputFolder": "C:\\Users\\praczykm\\Desktop\\PODZIAŁ_TESTY_V2\\out",
+  "FileNameTemplate": "Raport_{value}.xlsm",
+  "SplitColumn": "Nazwa Opiekuna Klienta",
+  "Values": [],
+  "Groups": [],
+  "SheetsToKeep": [
+    "NIE_USUWAĆ",
+    "src_01",
+    "01_Structure",
+    "02_Customers1",
+    "02_Customers2"
+  ],
+  "PowerPivot": {
+    "PreparedWorkbook": "C:\\Users\\praczykm\\Desktop\\PODZIAŁ_TESTY_V2\\szablon\\Raport_Szablon.prepared.xlsm",
+    "CacheFolder": "C:\\Users\\praczykm\\Desktop\\PODZIAŁ_TESTY_V2\\staging",
+    "ConfigSheetName": "_Config",
+    "Queries": [
+      {
+        "Name": "dim_KlienciV2",
+        "FilterColumn": "Nazwa Opiekuna Klienta",
+        "Cache": true
+      },
+      {
+        "Name": "fact_Zamówienia",
+        "FilterColumn": "Odbiorca materiałów",
+        "KeyFrom": {
+          "Query": "dim_KlienciV2",
+          "Column": "Identyfikator"
+        },
+        "Cache": true
+      },
+      {
+        "Name": "dim_Produkty",
+        "Cache": true
+      }
+    ],
+    "UseCache": true,
+    "RefreshPivotCaches": false,
+    "CacheSelfCheck": true,
+    "ParamsTable": "Params",
+    "SplitParamName": "SplitValue",
+    "UseCacheParamName": "UseCache",
+    "CachePathParamName": "CachePath",
+    "AllValuesToken": "__ALL__",
+    "SplitTable": "dim_KlienciV2",
+    "CacheTables": [
+      "dim_KlienciV2",
+      "fact_Zamówienia",
+      "dim_Produkty"
+    ]
+  },
+  "Hardening": {
+    "StubQueries": true,
+    "DeleteQueries": false,
+    "ProtectStructure": false,
+    "DisableRefreshOnOpen": true,
+    "RemoveSplitColumnSlicers": false
+  },
+  "Verify": true
+}

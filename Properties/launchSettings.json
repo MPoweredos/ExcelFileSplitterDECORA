@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "inspect": {
+      "commandName": "Project",
+      "commandLineArgs": "inspect config.szablon.json"
+    },
+    "split": {
+      "commandName": "Project",
+      "commandLineArgs": "split config.szablon.json"
+    },
+    "cache": {
+      "commandName": "Project",
+      "commandLineArgs": "cache config.szablon.json"
+    },
+    "prepare": {
+      "commandName": "Project",
+      "commandLineArgs": "prepare config.szablon.json"
+    },
+    "inspect (zwykly excel)": {
+      "commandName": "Project",
+      "commandLineArgs": "inspect config.zwykly.szablon.json"
+    },
+    "split (zwykly excel)": {
+      "commandName": "Project",
+      "commandLineArgs": "split config.zwykly.szablon.json"
+    }
+  }
+}

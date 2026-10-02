@@ -1,0 +1,39 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.PivotStep5Column"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource NaglowekKroku}" Text="Tabela i kolumna podziału" />
+            <TextBlock Style="{StaticResource OpisKroku}"
+                       Text="Po której kolumnie modelu rozdzielić dane. Ta sama kolumna musi być filtrowana w sekcji Queries - inaczej pliki byłyby puste albo niezgodne z tym, co sprawdza weryfikacja." />
+
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tabela modelu" VerticalAlignment="Center" Margin="0,0,8,6" />
+                <ComboBox   Grid.Row="0" Grid.Column="1" x:Name="ListaTabel" Width="300" Padding="4,3" Margin="0,0,0,6"
+                            SelectionChanged="Tabela_Changed" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Kolumna" VerticalAlignment="Center" Margin="0,0,8,0" />
+                <ComboBox   Grid.Row="1" Grid.Column="1" x:Name="ListaKolumn" Width="300" Padding="4,3"
+                            SelectionChanged="Kolumna_Changed" />
+
+                <TextBlock Grid.Row="1" Grid.Column="2" x:Name="Podsumowanie" VerticalAlignment="Center"
+                           Margin="12,0,0,0" Foreground="#555555" TextWrapping="Wrap" />
+            </Grid>
+
+            <TextBlock Text="Wartości w modelu:" FontWeight="SemiBold" Margin="0,0,0,4" />
+        </StackPanel>
+
+        <ListBox x:Name="ListaWartosci" DisplayMemberPath="Display" />
+    </DockPanel>
+</UserControl>

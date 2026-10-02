@@ -1,0 +1,77 @@
+<Window x:Class="ExcelFileSplitter.Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExcelFileSplitter" Height="720" Width="1060" MinHeight="560" MinWidth="900"
+        WindowStartupLocation="CenterScreen" Closing="Window_Closing" Closed="Window_Closed">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="#F3F3F3">
+            <DockPanel Margin="16,24,16,16">
+
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Border BorderBrush="#DDDDDD" BorderThickness="0,1,0,0" Margin="0,16,0,8" />
+                    <TextBlock x:Name="Autor" Foreground="#666666" FontSize="11" TextWrapping="Wrap" />
+                    <TextBlock x:Name="Wersja" Foreground="#888888" FontSize="11" Margin="0,2,0,0" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top">
+                <TextBlock x:Name="NazwaProgramu" Text="Podział plików Excela" FontWeight="Bold" FontSize="15"
+                           Margin="0,0,0,4" TextWrapping="Wrap" />
+                <TextBlock Text="Podział raportu Excela na pliki dla poszczególnych odbiorców - bez danych pozostałych"
+                           TextWrapping="Wrap" Foreground="#666666" FontSize="11" Margin="0,0,0,20" />
+                <ItemsControl x:Name="ListaKrokow">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Text}" FontWeight="{Binding Weight}" Foreground="{Binding Color}"
+                                       Margin="0,0,0,10" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button x:Name="PrzyciskOdNowa" Content="Zacznij od nowa" Click="OdNowa_Click"
+                        HorizontalAlignment="Left" Margin="0,8,0,0"
+                        ToolTip="Czyści wszystko, co ustawiono w kreatorze, zamyka otwarty plik i uruchamia Excela od nowa - tak jak ponowne włączenie programu. Ustawienia zapisane do pliku zostają; wczytasz je przyciskiem „Wczytaj ustawienia”." />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <ContentControl x:Name="TrescKroku" Grid.Row="0" Grid.Column="1" Margin="24,24,24,0" />
+
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0" Padding="24,12">
+            <StackPanel>
+                <ProgressBar x:Name="Pasek" Height="4" IsIndeterminate="True" Visibility="Collapsed" Margin="0,0,0,8" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Button Content="Wczytaj ustawienia" Click="Wczytaj_Click" x:Name="PrzyciskWczytaj" Margin="0,0,8,0" />
+                        <Button Content="Zapisz ustawienia" Click="Zapisz_Click" x:Name="PrzyciskZapisz" Margin="0" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="16,0">
+                        <TextBlock x:Name="Komunikat" Foreground="#B00020" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <TextBlock x:Name="StanPracy" Foreground="#555555" TextWrapping="Wrap" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <Button x:Name="PrzyciskWstecz" Content="Wstecz" Click="Wstecz_Click" IsEnabled="False" />
+                        <Button x:Name="PrzyciskDalej" Content="Dalej" Click="Dalej_Click" IsDefault="True" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

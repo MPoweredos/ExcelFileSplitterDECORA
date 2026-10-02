@@ -1,0 +1,23 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.LogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6,0,0">
+            <TextBlock x:Name="Potwierdzenie" Foreground="DarkGreen" VerticalAlignment="Center" Margin="0,0,10,0" />
+            <Button Content="Kopiuj przebieg" Click="KopiujWszystko_Click" MinWidth="130" />
+        </StackPanel>
+
+        <ListBox x:Name="Lista" DisplayMemberPath="Display" FontFamily="Consolas" FontSize="11"
+                 SelectionMode="Extended" KeyDown="Lista_KeyDown">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Kopiuj zaznaczone linie" Click="KopiujZaznaczone_Click" InputGestureText="Ctrl+C" />
+                    <MenuItem Header="Kopiuj cały przebieg" Click="KopiujWszystko_Click" />
+                    <Separator />
+                    <MenuItem Header="Zaznacz wszystko" Click="ZaznaczWszystko_Click" InputGestureText="Ctrl+A" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+    </DockPanel>
+</UserControl>

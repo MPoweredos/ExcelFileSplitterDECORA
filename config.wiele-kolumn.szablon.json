@@ -1,0 +1,24 @@
+{
+  "Mode": "Worksheet",
+  "SourceWorkbook": "C:\\Raporty\\Sprzedaz.xlsx",
+  "OutputFolder": "C:\\Raporty\\out",
+  "FileNameTemplate": "Sprzedaz_{name}.xlsx",
+  "SplitColumns": [
+    "Region",
+    "Nazwa Opiekuna Klienta"
+  ],
+  "Keys": [],
+  "SheetsToKeep": [
+    "Dane",
+    "Dashboard"
+  ],
+  "Worksheet": {
+    "Table": "tblSprzedaz",
+    "Sheet": "",
+    "HeaderRow": 1,
+    "DeleteEntireRow": true,
+    "FormulasToValues": true,
+    "AllowEmptyRecipients": false
+  },
+  "Verify": true
+}

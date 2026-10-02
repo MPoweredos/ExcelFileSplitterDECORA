@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ExcelFileSplitter.Core/ExcelFileSplitter.Core.csproj" />
+  <Project Path="ExcelFileSplitter.csproj" />
+  <Project Path="ExcelFileSplitter.Ui/ExcelFileSplitter.Ui.csproj" />
+  <Project Path="ExcelFileSplitter.Tests/ExcelFileSplitter.Tests.csproj" />
+</Solution>

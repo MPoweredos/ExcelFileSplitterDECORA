@@ -1,0 +1,36 @@
+<UserControl x:Class="ExcelFileSplitter.Ui.Wizard.Step2Data"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource NaglowekKroku}" Text="Gdzie są dane" />
+            <TextBlock Style="{StaticResource OpisKroku}"
+                       Text="Wskaż tabelę albo arkusz z danymi wszystkich odbiorców. To z nich będą kasowane wiersze - reszta skoroszytu (raporty, tabele przestawne, wykresy) zostaje nietknięta." />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Margin="0,12,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <TextBlock Text="Wiersz nagłówków" VerticalAlignment="Center" Margin="0,0,8,0" />
+                <TextBox x:Name="PoleWiersz" Width="60" Padding="4,3" />
+                <Button Content="Odczytaj ponownie" Click="Odczytaj_Click" x:Name="PrzyciskOdczytaj" />
+                <TextBlock x:Name="OpisWiersza" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="#555555" />
+            </StackPanel>
+
+            <CheckBox x:Name="PoleCaleWiersze" IsChecked="True" Margin="0,0,0,6"
+                      Content="Kasuj całe wiersze arkusza (odznacz, gdy obok danych, w tych samych wierszach, stoi coś jeszcze)" />
+
+            <CheckBox x:Name="PoleFormulyNaWartosci" IsChecked="True" Margin="0,0,0,8"
+                      Content="Zamień formuły w danych na wartości (znacznie szybszy podział; dotyczy tylko tego zakresu)"
+                      ToolTip="Sortowanie zakresu z formułami to najdroższy krok całego podziału. Raporty, tabele przestawne i pozostałe arkusze zostają nietknięte. Gdy arkusz z danymi jest u odbiorcy kasowany, różnicy nie widać w ogóle." />
+
+            <TextBlock Text="Kolumny w wybranych danych:" FontWeight="SemiBold" Margin="0,0,0,4" />
+            <ScrollViewer MaxHeight="90" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="PodgladNaglowkow" TextWrapping="Wrap" Foreground="#555555" />
+            </ScrollViewer>
+        </StackPanel>
+
+        <ListBox x:Name="ListaKandydatow" DisplayMemberPath="Summary"
+                 SelectionChanged="Kandydat_Changed" />
+    </DockPanel>
+</UserControl>

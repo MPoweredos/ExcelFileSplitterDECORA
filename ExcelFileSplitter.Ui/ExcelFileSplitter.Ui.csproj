@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ExcelFileSplitter.Ui</RootNamespace>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+
+    <AssemblyName>PodzialPlikow</AssemblyName>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0</Version>
+    <Product>Podzial plikow Excela</Product>
+    <Company>Michał Praczyk</Company>
+    <Authors>Michał Praczyk</Authors>
+    <Copyright>© Michał Praczyk</Copyright>
+    <Description>Dzieli raport Excela na pliki dla poszczegolnych odbiorcow - bez danych pozostalych odbiorcow.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelFileSplitter.Core\ExcelFileSplitter.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System.IO" />
+    <Using Include="System.Threading" />
+  </ItemGroup>
+
+</Project>
